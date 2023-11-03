@@ -7,9 +7,9 @@ plugins {
 
 project.ext.modID = "projectcuriosity.moretrinketslots" // The unique id of your mod. Must be all lowercase and cannot use special characters.
 project.ext.modName = "More Trinket Slots" // The display name of your mod.
-project.ext.modVersion = "2.0.0" // Your current builds version. Must follow the xx.xx... format.
+project.ext.modVersion = "1.0.0" // Your current builds version. Must follow the xx.xx... format.
 project.ext.gameVersion = "0.22.1" // The target game version.
-project.ext.modDescription = "Adds customizable options that allow you to get more or less trinket slots than the game typically allows." // Short description of what your mod is.
+project.ext.modDescription = "Increases max trinket slot size to 8." // Short description of what your mod is.
 project.ext.author = "ProjectCuriosity" // Your name
 
 /**
