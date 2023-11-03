@@ -25,7 +25,7 @@ Note: This mod should be completely safe to use on existing saves. However, to b
 By default this mod is set so the player starts with 4 trinkets slots and can get a max of 8 trinket slots. To see details how check Default under the Preset section below.
 
 ## New Items
-<img src="https://github.com/project-curiosity/MoreTrinketSlots/blob/main/src/main/resources/items/moretrinketslots_allitems.png" width=10% height=10%><br>
+<img src="https://github.com/project-curiosity/MoreTrinketSlots/blob/main/src/main/images/allitems.png" width=10% height=10%><br>
 These are the names of the items in the order they appear in the image above:
 - Belt Clip, Spider Leg Keychain, Protective Case, Pocket Protector, Belt Bag, Trinket Pouch, Charm Bracelet
 - Swamp Fruit, Dragon Satchel, Dry Bag, Sling Bag, How To Hold More Trinkets: Vol. 1-3
