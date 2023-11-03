@@ -1,0 +1,90 @@
+--- Necesse crash log ---
+Generated on: 2023-11-01 14h30m56s
+At E:\Code\Necesse Mod\MoreTrinketSlots\latest-crash.log
+Game state: MainMenu
+Game version: 0.22.1
+Game language: en
+Steam build: 12080883
+Steam name: ProjectCuriosity
+Authentication: 76561198065918126
+Launch parameters: "-mod build/jar/"
+Found 3 loaded mods:
+	projectcuriosity.moretrinketslots, v2.0.0 - More Trinket Slots (-1)
+	xavius.aspectsofalterration, v1.1.5.2 - Aspects of Alterration (2997987435)
+	fair.bossfightsummary, v1.0 - Boss Fight Summary (2824816332)
+Found 1 not enabled mods:
+	snoobinoob.commandutils, v2.0 - Command Utils (2951827066)
+
+Exceptions:
+java.lang.NullPointerException: Cannot invoke "necesse.engine.registries.MobRegistry$MobRegistryElement.newInstance(Object[])" because the return value of "necesse.engine.registries.MobRegistry.getElement(int)" is null
+	at necesse.engine.registries.MobRegistry.getMob(MobRegistry.java:638)
+	at necesse.engine.registries.MobRegistry.getMob(MobRegistry.java:653)
+	at necesse.engine.network.server.Server.start(Server.java:100)
+	at necesse.engine.GlobalData.startSingleplayerClient(GlobalData.java:242)
+	at necesse.engine.state.MainMenu.startSingleplayer(MainMenu.java:400)
+	at necesse.engine.state.MainMenu.lambda$loadContinueCacheSave$6(MainMenu.java:464)
+	at necesse.gfx.forms.presets.MainMenuForm.lambda$new$1(MainMenuForm.java:71)
+	at necesse.gfx.forms.events.FormEventsHandler.onEvent(FormEventsHandler.java:31)
+	at necesse.gfx.forms.components.FormButton.lambda$new$2(FormButton.java:58)
+	at necesse.gfx.forms.FormClickHandler.forceClick(FormClickHandler.java:87)
+	at necesse.gfx.forms.FormClickHandler.handleEvent(FormClickHandler.java:64)
+	at necesse.gfx.forms.components.FormButton.handleInputEvent(FormButton.java:110)
+	at necesse.gfx.forms.ComponentList.submitInputEvent(ComponentList.java:51)
+	at necesse.gfx.forms.Form.handleInputEvent(Form.java:233)
+	at necesse.gfx.forms.ComponentList.submitInputEvent(ComponentList.java:51)
+	at necesse.gfx.forms.components.FormComponentListTyped.handleInputEvent(FormComponentListTyped.java:39)
+	at necesse.gfx.forms.FormSwitcherTyped.handleInputEvent(FormSwitcherTyped.java:28)
+	at necesse.gfx.forms.FormSwitcherTyped.handleInputEvent(FormSwitcherTyped.java:28)
+	at necesse.gfx.forms.ComponentList.submitInputEvent(ComponentList.java:51)
+	at necesse.gfx.forms.FormManager.submitInputEvent(FormManager.java:216)
+	at necesse.engine.state.MainMenu.lambda$frameTick$1(MainMenu.java:228)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1092)
+	at necesse.engine.state.MainMenu.frameTick(MainMenu.java:228)
+	at necesse.engine.Screen$1.lambda$update$2(Screen.java:693)
+	at necesse.engine.tickManager.PerformanceTimerManager.recordConstantPerformance(PerformanceTimerManager.java:113)
+	at necesse.engine.tickManager.Performance.recordConstant(Performance.java:16)
+	at necesse.engine.Screen$1.update(Screen.java:692)
+	at necesse.engine.tickManager.TickManager.tickLogic(TickManager.java:98)
+	at necesse.engine.Screen.init(Screen.java:1182)
+	at necesse.engine.Screen.<init>(Screen.java:267)
+	at StartClient.main(StartClient.java:111)
+
+Username: Project
+OS: Microsoft Windows 10 (Home) build 19045
+OS arch: amd64
+CPU: AMD Ryzen 7 5800X3D 8-Core Processor           
+Memory total: 17.10 GB
+Memory used: 14.71 GB
+Java path: C:\Users\Project\.jdks\temurin-17.0.8.1
+Java version: 17.0.8.1
+JVM arguments:
+	-XX:+UnlockExperimentalVMOptions
+	-XX:+UseG1GC
+	-XX:G1NewSizePercent=20
+	-XX:G1ReservePercent=20
+	-XX:MaxGCPauseMillis=50
+	-XX:G1HeapRegionSize=32M
+	-Xms512m
+	-Xmx3G
+	-Dfile.encoding=windows-1252
+	-Duser.country=US
+	-Duser.language=en
+	-Duser.variant
+LWJGL version: 3.3.1 build 7
+AppData path: C:\Users\Project\AppData\Roaming\Necesse\
+Working dir: E:\Code\Necesse Mod\MoreTrinketSlots
+Natives path: E:\Games\Steam\steamapps\common\Necesse\.\natives
+JVM memory max: 3.22 GB
+JVM memory used: 546.84 MB / 1.01 GB (54.32%)
+
+Graphics card: NVIDIA Corporation, NVIDIA GeForce GTX 1070 Ti/PCIe/SSE2
+OpenGL version: 4.6.0 NVIDIA 537.13
+Found 2 displays:
+	Optix G24C (MCI, 1462)
+	Acer X223W (ACB, 50)
+FBO: GL30
+
+Running server: No
+
+Running client: No
