@@ -1,9 +1,0 @@
-{
-	id = projectcuriosity.moretrinketslots,
-	name = More Trinket Slots,
-	version = 2.0.0,
-	gameVersion = 0.22.1,
-	author = ProjectCuriosity,
-	description = Increases max trinket slot size to 8.,
-	clientside = false
-}
