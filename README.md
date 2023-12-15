@@ -57,6 +57,7 @@ This mod adds 3 commands:
     - a specified online player, cannot target offline player
   - `offline`
     - all players who are currently offline
+    - Note: Trinket slots for offline players can only be edited if the server does not allow outside characters.
   - `online`
       - all players who are currently online
   - `all`
