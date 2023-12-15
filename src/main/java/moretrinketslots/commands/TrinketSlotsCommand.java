@@ -6,9 +6,7 @@ import necesse.engine.commands.CommandLog;
 import necesse.engine.commands.ModularChatCommand;
 import necesse.engine.commands.PermissionLevel;
 import necesse.engine.commands.parameterHandlers.*;
-import necesse.engine.localization.message.GameMessage;
 import necesse.engine.localization.message.GameMessageBuilder;
-import necesse.engine.network.Packet;
 import necesse.engine.network.client.Client;
 import necesse.engine.network.packet.PacketUpdateTrinketSlots;
 import necesse.engine.network.server.Server;
@@ -54,17 +52,15 @@ public class TrinketSlotsCommand extends ModularChatCommand {
             target.playerMob.equipmentBuffManager.updateTrinketBuffs();
             target.closeContainer(false);
             target.updateInventoryContainer();
-            target.getServer().network.sendToAllClients((Packet)new PacketUpdateTrinketSlots(target));
+            target.getServer().network.sendToAllClients(new PacketUpdateTrinketSlots(target));
         }
     }
 
     public int getAdjustAmount(int currentSlots) {
         if (currentSlots < MTSConfig.initialSlots) {
             return MTSConfig.initialSlots;
-        } else if (currentSlots > MTSConfig.getMaxSlots()) {
-            return MTSConfig.getMaxSlots();
         } else {
-            return currentSlots;
+            return Math.min(currentSlots, MTSConfig.getMaxSlots());
         }
     }
 
@@ -100,7 +96,7 @@ public class TrinketSlotsCommand extends ModularChatCommand {
                 //return
                 if (newSlotAmount < 0) {
                     msg.append("Missing/invalid argument <new amount>");
-                    logs.add((GameMessage)msg);
+                    logs.add(msg);
                     return;
                 }
                 break;
@@ -131,7 +127,7 @@ public class TrinketSlotsCommand extends ModularChatCommand {
             } else {
                 msg.append(String.format("Changed %s's trinket slots to %d", targetClient.playerMob.playerName, newSlotAmount));
             }
-            logs.add((GameMessage)msg);
+            logs.add(msg);
             server.saveAll();
             return;
         }
@@ -153,11 +149,11 @@ public class TrinketSlotsCommand extends ModularChatCommand {
             }
         }
 
-        //set all player file trinket slots (online and offline players)
-        if (Objects.equals(target, "all") || Objects.equals(target, "offline")) {
+        //set all player file trinket slots (offline players only)
+        //(only if outside characters are not allowed)
+        if (!server.world.settings.allowOutsideCharacters && (Objects.equals(target, "all") || Objects.equals(target, "offline"))) {
             LinkedList<WorldFile> playerFiles = server.world.fileSystem.getPlayerFiles();
             for (WorldFile playerFile : playerFiles) {
-                LoadData playerData = new LoadData(playerFile);
                 if (!new LoadData(playerFile).isEmpty()) {
                     //get the file name
                     String fileName = playerFile.getFileName().toString();
@@ -201,7 +197,7 @@ public class TrinketSlotsCommand extends ModularChatCommand {
         } else {
             msg.append(String.format("Changed %s players trinket slots to %d", target, newSlotAmount));
         }
-        logs.add((GameMessage)msg);
+        logs.add(msg);
         server.saveAll();
     }
 }

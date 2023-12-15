@@ -43,7 +43,7 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
     //this is just a slightly modified version of how the game implements this function
     public InventoryItem onPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, PacketReader contentReader) {
         TrinketSlotsItemConfig itemConfig = MTSConfig.getConsolidatedConfig(itemID);
-        if (level.isServerLevel() && itemConfig.increment > 0) {
+        if (level.isServer() && itemConfig.increment > 0) {
             (player.getInv()).trinkets.changeSize(getNewSize(player, itemConfig));
             player.equipmentBuffManager.updateTrinketBuffs();
             ServerClient serverClient = player.getServerClient();

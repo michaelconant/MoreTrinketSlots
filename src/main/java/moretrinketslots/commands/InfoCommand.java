@@ -7,7 +7,6 @@ import necesse.engine.commands.CommandLog;
 import necesse.engine.commands.ModularChatCommand;
 import necesse.engine.commands.PermissionLevel;
 import necesse.engine.commands.parameterHandlers.PresetStringParameterHandler;
-import necesse.engine.localization.message.GameMessage;
 import necesse.engine.localization.message.GameMessageBuilder;
 import necesse.engine.network.client.Client;
 import necesse.engine.network.server.Server;
@@ -35,6 +34,7 @@ public class InfoCommand extends ModularChatCommand {
                 }), false)
         );
     }
+
 
     @Override
     public void runModular(Client client, Server server, ServerClient serverClient, Object[] args, String[] errors, CommandLog logs) {
@@ -72,14 +72,14 @@ public class InfoCommand extends ModularChatCommand {
 
             msg.append(String.format("\n%sThe following bosses drop items to increase trinket slots:\n", defaultColor));
             //loop through each key in ascending order based on the item configs
-            int i = 0;
             for (String bossKey : keys) {
                 TrinketSlotsItemConfig itemConfig = sortedMap.get(bossKey);
                 if (itemConfig.minSlots > 0 && (itemConfig.maxSlots != 0 && itemConfig.increment > 0)) {
-                    String bossName = "";
+                    String bossName;
                     //try to get the display name of the boss
                     try {
                         Class<?> cls = Class.forName(bossKey);
+                        @SuppressWarnings("unchecked")
                         int mobID = MobRegistry.getMobID((Class<? extends Mob>) cls);
                         bossName = MobRegistry.getDisplayName(mobID);
                     } catch (Exception e) {
@@ -95,7 +95,6 @@ public class InfoCommand extends ModularChatCommand {
                             GameColor.LIGHT_GRAY.getColorCode(), ItemRegistry.getDisplayName(ItemRegistry.getItemID(itemConfig.itemID)), defaultColor,
                             GameColor.RED.getColorCode(), itemConfig.maxSlots, defaultColor));
                 }
-                i++;
             }
         }
 
@@ -107,7 +106,6 @@ public class InfoCommand extends ModularChatCommand {
             //sort list of items configs
             Collections.sort(consolidatedConfigs);
             //display item configs
-            int i = 0;
             for (TrinketSlotsItemConfig itemConfig : consolidatedConfigs) {
                 if (itemConfig.minSlots > 0 && (itemConfig.maxSlots != 0 && itemConfig.increment > 0)) {
                     msg.append(String.format("%s%s%s - min:%s%d%s, max:%s%d%s, increment:%s%d%s\n",
@@ -116,9 +114,8 @@ public class InfoCommand extends ModularChatCommand {
                             GameColor.RED.getColorCode(), itemConfig.maxSlots, defaultColor,
                             GameColor.BLUE.getColorCode(), itemConfig.increment, defaultColor));
                 }
-                i++;
             }
         }
-        logs.add((GameMessage)msg);
+        logs.add(msg);
     }
 }

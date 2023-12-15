@@ -12,15 +12,14 @@ import necesse.inventory.lootTable.lootItem.LootItemList;
 import necesse.inventory.lootTable.lootItem.RotationLootItem;
 
 import java.lang.reflect.Field;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 
 public class LootTableFunctions {
 
     public static void add(LootTable lootTable, TrinketSlotsItemConfig itemConfig) {
-        lootTable.items.add((LootItemInterface) new ConditionLootItem(itemConfig.itemID, (r, o) -> {
-            ServerClient client = (ServerClient)LootTable.expectExtra(ServerClient.class, o, 1);
+        lootTable.items.add(new ConditionLootItem(itemConfig.itemID, (r, o) -> {
+            ServerClient client = LootTable.expectExtra(ServerClient.class, o, 1);
             int playerSlotCount = (client.playerMob.getInv()).trinkets.getSize();
             return playerSlotCount < itemConfig.maxSlots;
         }));
@@ -28,32 +27,14 @@ public class LootTableFunctions {
 
     public static void remove(LootTable lootTable, String targetItemID) {
         //look through all entries in the loot table
-        Iterator<LootItemInterface> lootTableIter = lootTable.items.iterator();
-        while (lootTableIter.hasNext()) {
-            LootItemInterface lootTableElement = lootTableIter.next();
-            if (remove(lootTableElement, targetItemID)) {
-                lootTableIter.remove();
-            }
-        }
+        lootTable.items.removeIf(lootTableElement -> remove(lootTableElement, targetItemID));
     }
     public static boolean remove(LootItemInterface loot, String targetItemID) {
         if (loot instanceof LootItemList) {
-            Iterator<LootItemInterface> lootIter = ((LootItemList)loot).iterator();
-            while (lootIter.hasNext()) {
-                LootItemInterface item = lootIter.next();
-                if (remove(item, targetItemID)) {
-                    lootIter.remove();
-                }
-            }
+            ((LootItemList) loot).removeIf(item -> remove(item, targetItemID));
             return false;
         } else if (loot instanceof RotationLootItem) {
-            Iterator<LootItemInterface> lootIter = ((RotationLootItem)loot).items.iterator();
-            while (lootIter.hasNext()) {
-                LootItemInterface item = lootIter.next();
-                if (remove(item, targetItemID)) {
-                    lootIter.remove();
-                }
-            }
+            ((RotationLootItem) loot).items.removeIf(item -> remove(item, targetItemID));
             return ((RotationLootItem) loot).items.isEmpty();
         } else {
             return Objects.equals(((LootItem) loot).itemStringID, targetItemID);
@@ -73,10 +54,14 @@ public class LootTableFunctions {
                 field.setAccessible(true);
                 Object obj = field.get(field);
                 LootTableFunctions.add((LootTable)obj, entry.getValue());
+                System.out.print(entry.getKey());
+                System.out.println(((LootTable) obj).items);
             } catch (Exception e) {
                 try {
                     Mob tempMob = MobRegistry.getMob(entry.getKey(), MTSConfig.level);
                     LootTableFunctions.add(tempMob.getPrivateLootTable(), entry.getValue());
+                    System.out.print(entry.getKey());
+                    System.out.println(tempMob.getPrivateLootTable().items);
                 } catch (Exception f) {
                     MTSConfig.items.remove(entry.getKey());
                 }
