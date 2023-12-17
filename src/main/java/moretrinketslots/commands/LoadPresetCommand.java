@@ -7,7 +7,6 @@ import moretrinketslots.modclasses.settings.MTSWorldFile;
 import necesse.engine.commands.*;
 import necesse.engine.commands.parameterHandlers.IntParameterHandler;
 import necesse.engine.commands.parameterHandlers.PresetStringParameterHandler;
-import necesse.engine.localization.message.GameMessage;
 import necesse.engine.localization.message.GameMessageBuilder;
 import necesse.engine.network.client.Client;
 import necesse.engine.network.server.Server;
@@ -132,11 +131,12 @@ public class LoadPresetCommand extends ModularChatCommand {
         }
         MTSConfig.set(initialSlots, items);
         MTSWorldFile.saveSettings(server.world);
+        LootTableFunctions.addItemsToLootTables();
         msg.append(String.format("Changed %s settings to %s", MTSConfig.modAcronym, presetOption));
         if (presetOption.equals("zerotohero") || presetOption.equals("nogain")) {
             msg.append(String.format(" %d", subPresetNumber));
         }
-        logs.add((GameMessage)msg);
+        logs.add(msg);
     }
 }
 //Default Settings
