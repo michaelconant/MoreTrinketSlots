@@ -5,7 +5,6 @@ import moretrinketslots.modclasses.items.TrinketSlotsItemConfig;
 import necesse.entity.mobs.hostile.bosses.*;
 import necesse.level.maps.Level;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 

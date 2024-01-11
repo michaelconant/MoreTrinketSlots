@@ -3,11 +3,13 @@ package moretrinketslots.commands;
 import moretrinketslots.modclasses.items.LootTableFunctions;
 import moretrinketslots.modclasses.items.TrinketSlotsItemConfig;
 import moretrinketslots.modclasses.settings.MTSConfig;
+import moretrinketslots.modclasses.settings.MTSPacket;
 import moretrinketslots.modclasses.settings.MTSWorldFile;
 import necesse.engine.commands.*;
 import necesse.engine.commands.parameterHandlers.IntParameterHandler;
 import necesse.engine.commands.parameterHandlers.PresetStringParameterHandler;
 import necesse.engine.localization.message.GameMessageBuilder;
+import necesse.engine.network.Packet;
 import necesse.engine.network.client.Client;
 import necesse.engine.network.server.Server;
 import necesse.engine.network.server.ServerClient;
@@ -137,6 +139,9 @@ public class LoadPresetCommand extends ModularChatCommand {
             msg.append(String.format(" %d", subPresetNumber));
         }
         logs.add(msg);
+
+        //send updated settings to clients (for when the server allows outside characters)
+        server.network.sendToAllClients((Packet) new MTSPacket());
     }
 }
 //Default Settings

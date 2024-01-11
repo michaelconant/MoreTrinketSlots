@@ -2,6 +2,8 @@ package moretrinketslots.modclasses.settings;
 
 import moretrinketslots.modclasses.items.LootTableFunctions;
 import moretrinketslots.modclasses.items.TrinketSlotsItemConfig;
+import necesse.engine.network.PacketReader;
+import necesse.engine.network.PacketWriter;
 import necesse.engine.registries.MobRegistry;
 import necesse.engine.save.LoadData;
 import necesse.engine.save.SaveData;
@@ -11,6 +13,7 @@ import necesse.entity.mobs.Mob;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MTSWorldFile {
 
@@ -90,6 +93,42 @@ public class MTSWorldFile {
                     }
                 }
             }
+        }
+        LootTableFunctions.addItemsToLootTables();
+    }
+
+    public static void setupContentPacket(PacketWriter writer) {
+        writer.putNextString(MTSConfig.modName);
+        writer.putNextInt(MTSConfig.initialSlots);
+        writer.putNextInt(MTSConfig.items.size());
+        for (Map.Entry<String, TrinketSlotsItemConfig> entry : MTSConfig.items.entrySet()) {
+            writer.putNextString(entry.getKey());
+            writer.putNextString(entry.getValue().itemID);
+            writer.putNextInt(entry.getValue().minSlots);
+            writer.putNextInt(entry.getValue().maxSlots);
+            writer.putNextInt(entry.getValue().increment);
+        }
+    }
+
+    public static void applyContentPacket(PacketReader reader) {
+        LootTableFunctions.removeItemsFromLootTables();
+        if (Objects.equals(reader.getNextString(), MTSConfig.modName)) {
+            MTSConfig.emptyItems();
+            MTSConfig.initialSlots = reader.getNextInt();
+            int itemConfigSize = reader.getNextInt();
+            for (int i = 0; i < itemConfigSize; i++) {
+                String key = reader.getNextString();
+                TrinketSlotsItemConfig newItem = new TrinketSlotsItemConfig(
+                        reader.getNextString(),
+                        reader.getNextInt(),
+                        reader.getNextInt(),
+                        reader.getNextInt()
+                );
+                MTSConfig.items.put(key, newItem);
+            }
+        } else {
+            MTSConfig.setDefault();
+            System.out.println(MTSConfig.modName + ": settings not found for server");
         }
         LootTableFunctions.addItemsToLootTables();
     }

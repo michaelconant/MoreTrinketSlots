@@ -6,6 +6,7 @@ import moretrinketslots.modclasses.settings.MTSConfig;
 import moretrinketslots.modclasses.items.IncrementalTrinketSlotsItem;
 import moretrinketslots.modclasses.items.LootTableFunctions;
 import moretrinketslots.modclasses.items.TrinketSlotsItemConfig;
+import moretrinketslots.modclasses.settings.MTSPacket;
 import necesse.engine.commands.CommandsManager;
 import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.*;
@@ -50,6 +51,9 @@ public class MoreTrinketSlots {
 
         LootTableFunctions.remove(FallenWizardMob.privateLootTable, "wizardsocket");
         System.out.println("projectcuriosity.moretrinketslots removed wizardsocket from FallenWizardMob.privateLootTable");
+
+        //register mod packet
+        PacketRegistry.registerPacket(MTSPacket.class);
     }
 
     @SuppressWarnings("unused")
