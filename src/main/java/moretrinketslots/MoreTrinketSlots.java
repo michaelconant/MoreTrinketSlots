@@ -43,7 +43,6 @@ public class MoreTrinketSlots {
         ItemRegistry.registerItem(MTSConfig.itemPrefix +"dectrinkets10", new TestChangeTrinketSlotsItem(-10), 0.0F, false);
         ItemRegistry.registerItem(MTSConfig.itemPrefix + "testsword", new TestSwordItem(), 0, false);
 
-
         //remove vanilla trinket slot items from loot tables
         //items are added to the private loot tables when the world is loaded
         LootTableFunctions.remove(VoidWizard.privateLootTable, "emptypendant");

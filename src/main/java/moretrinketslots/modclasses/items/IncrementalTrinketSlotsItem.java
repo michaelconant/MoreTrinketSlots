@@ -6,6 +6,7 @@ import necesse.engine.network.Packet;
 import necesse.engine.network.PacketReader;
 import necesse.engine.network.packet.PacketUpdateTrinketSlots;
 import necesse.engine.network.server.ServerClient;
+import necesse.engine.util.GameBlackboard;
 import necesse.entity.mobs.PlayerMob;
 import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
@@ -22,8 +23,8 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
         this.rarity = Rarity.UNIQUE;
     }
 
-    public ListGameTooltips getTooltips(InventoryItem item, PlayerMob perspective) {
-        ListGameTooltips tooltips = super.getTooltips(item, perspective);
+    public ListGameTooltips getTooltips(InventoryItem item, PlayerMob perspective, GameBlackboard blackboard) {
+        ListGameTooltips tooltips = super.getTooltips(item, perspective, blackboard);
         tooltips.add(Localization.translate("itemtooltip", itemID+"tip"));
         return tooltips;
     }
