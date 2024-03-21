@@ -10,10 +10,10 @@ public class TestSwordItem extends SwordToolItem {
 
     public TestSwordItem() {
         super(0);
-        this.rarity = Rarity.UNCOMMON;
+        this.rarity = Rarity.LEGENDARY;
         this.attackAnimTime.setBaseValue(300);
         this.attackDamage.setBaseValue(90000);
-        this.attackRange.setBaseValue(100);
+        this.attackRange.setBaseValue(90000);
         this.knockback.setBaseValue(400);
     }
 

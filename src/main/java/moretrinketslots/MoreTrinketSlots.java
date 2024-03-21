@@ -46,7 +46,7 @@ public class MoreTrinketSlots {
         //remove vanilla trinket slot items from loot tables
         //items are added to the private loot tables when the world is loaded
         LootTableFunctions.remove(VoidWizard.privateLootTable, "emptypendant");
-        System.out.println("projectcuriosity.moretrinketslots removed emptypendant from FallenWizardMob.privateLootTable");
+        System.out.println("projectcuriosity.moretrinketslots removed emptypendant from VoidWizardMob.privateLootTable");
 
         LootTableFunctions.remove(FallenWizardMob.privateLootTable, "wizardsocket");
         System.out.println("projectcuriosity.moretrinketslots removed wizardsocket from FallenWizardMob.privateLootTable");

@@ -16,7 +16,6 @@ import java.awt.*;
 public class StartPatch {
     @Advice.OnMethodEnter
     static void onEnter(@Advice.This Server server) {
-        System.out.println("start");
         MTSWorldFile.loadSettings(server.world);
         MTSConfig.level = new Level(
                 new LevelIdentifier("mtsproxylevel"),

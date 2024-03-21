@@ -27,23 +27,20 @@ public class LootTableFunctions {
 
     public static void remove(LootTable lootTable, String targetItemID) {
         //look through all entries in the loot table
-        lootTable.items.removeIf(lootTableElement -> remove(lootTableElement, targetItemID));
+        lootTable.items.removeIf(lootTableElement -> removeCondition(lootTableElement, targetItemID));
     }
-    public static boolean remove(LootItemInterface loot, String targetItemID) {
+    public static boolean removeCondition(LootItemInterface loot, String targetItemID) {
         if (loot instanceof LootItemList) {
-            ((LootItemList) loot).removeIf(item -> remove(item, targetItemID));
+            ((LootItemList) loot).removeIf(item -> removeCondition(item, targetItemID));
             return false;
         } else if (loot instanceof RotationLootItem) {
-            ((RotationLootItem) loot).items.removeIf(item -> remove(item, targetItemID));
+            ((RotationLootItem) loot).items.removeIf(item -> removeCondition(item, targetItemID));
             return ((RotationLootItem) loot).items.isEmpty();
-        } else {
+        } else if (loot instanceof LootItem){
             return Objects.equals(((LootItem) loot).itemStringID, targetItemID);
+        } else {
+            return false;
         }
-    }
-
-    public static void updateLootTables() {
-        removeItemsFromLootTables();
-        addItemsToLootTables();
     }
 
     public static void addItemsToLootTables() {
@@ -54,14 +51,10 @@ public class LootTableFunctions {
                 field.setAccessible(true);
                 Object obj = field.get(field);
                 LootTableFunctions.add((LootTable)obj, entry.getValue());
-                System.out.print(entry.getKey());
-                System.out.println(((LootTable) obj).items);
             } catch (Exception e) {
                 try {
                     Mob tempMob = MobRegistry.getMob(entry.getKey(), MTSConfig.level);
                     LootTableFunctions.add(tempMob.getPrivateLootTable(), entry.getValue());
-                    System.out.print(entry.getKey());
-                    System.out.println(tempMob.getPrivateLootTable().items);
                 } catch (Exception f) {
                     MTSConfig.items.remove(entry.getKey());
                 }
@@ -81,10 +74,9 @@ public class LootTableFunctions {
                 try {
                     Mob tempMob = MobRegistry.getMob(entry.getKey(), MTSConfig.level);
                     LootTableFunctions.remove(tempMob.getPrivateLootTable(), entry.getValue().itemID);
-                } catch (Exception f) {
-                    MTSConfig.items.remove(entry.getKey());
-                }
+                } catch (Exception ignored) {}
             }
         }
+        MTSConfig.emptyItems();
     }
 }

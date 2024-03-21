@@ -79,9 +79,8 @@ public class InfoCommand extends ModularChatCommand {
                     //try to get the display name of the boss
                     try {
                         Class<?> cls = Class.forName(bossKey);
-                        @SuppressWarnings("unchecked")
-                        int mobID = MobRegistry.getMobID((Class<? extends Mob>) cls);
-                        bossName = MobRegistry.getDisplayName(mobID);
+                        String[] splitName = cls.toString().split("\\.");
+                        bossName = splitName[splitName.length-1];
                     } catch (Exception e) {
                         try {
                             Mob tempMob = MobRegistry.getMob(bossKey, MTSConfig.level);

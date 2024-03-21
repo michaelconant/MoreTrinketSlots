@@ -257,7 +257,7 @@ Items can be used multiple times in the list but mod will combine the instances 
 
 ### Adding a drop for a boss
 Any mob with a `privateLootTable` can be given a drop to increase trinkets, even bosses from other mods. All you need to do is find the `stringID` for the mob or it's complete class name. 
-Finding the `stringID` is much simple, all you need to do is the following:
+Finding the `stringID` is much more simple, all you need to do is the following:
 1. go into a world that has cheats enabled
    - cheats can by entering `/allowcheats` twice in the chat
 2. open the cheat menu by pressing F10
@@ -320,7 +320,7 @@ Below I will list the `itemID`s from this mod and the base game that can be used
 
 ### Boss `stringID`s and Full Class Names
 - Evil's Protector
-  - evilsprotector
+  - `evilsprotector`
   - `necesse.entity.mobs.hostile.bosses.EvilsProtectorMob`
 - Queen Spider
   - `queenspider`

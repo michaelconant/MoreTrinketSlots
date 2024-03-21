@@ -71,7 +71,6 @@ public class MTSConfig {
 
     public static void setItems(Map<String, TrinketSlotsItemConfig> newItems) {
         LootTableFunctions.removeItemsFromLootTables();
-        emptyItems();
         for (Map.Entry<String, TrinketSlotsItemConfig> entry: newItems.entrySet()) {
             items.put(entry.getKey(), new TrinketSlotsItemConfig(entry.getValue()));
         }

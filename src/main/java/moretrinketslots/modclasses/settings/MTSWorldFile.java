@@ -63,11 +63,9 @@ public class MTSWorldFile {
 
     public static void loadSaveScript(LoadData save) {
         LootTableFunctions.removeItemsFromLootTables();
-        MTSConfig.emptyItems();
         if (save == null) {
             MTSConfig.setDefault();
             System.out.println(MTSConfig.modName + ": worldSettings.cfg, no load data, loading default config");
-            System.out.printf("%s: mtsSettings.cfg not found, loading default config%n", MTSConfig.modName);
         } else {
             MTSConfig.initialSlots = save.getInt("initialSlots", MTSConfig.initialSlots);
             LoadData bossDropData = save.getFirstLoadDataByName("bossdrops");
@@ -113,7 +111,6 @@ public class MTSWorldFile {
     public static void applyContentPacket(PacketReader reader) {
         LootTableFunctions.removeItemsFromLootTables();
         if (Objects.equals(reader.getNextString(), MTSConfig.modName)) {
-            MTSConfig.emptyItems();
             MTSConfig.initialSlots = reader.getNextInt();
             int itemConfigSize = reader.getNextInt();
             for (int i = 0; i < itemConfigSize; i++) {
