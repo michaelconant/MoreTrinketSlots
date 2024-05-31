@@ -33,7 +33,7 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
     public String canPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, PacketReader contentReader) {
         if (MTSConfig.containsItemID(itemID)) {
             int maxSlots = MTSConfig.getConsolidatedConfig(itemID).maxSlots;
-            if ((player.getInv()).trinkets.getSize() < maxSlots || maxSlots < 0) {
+            if ((player.getInv()).equipment.getTrinketSlotsSize() < maxSlots || maxSlots < 0) {
                 return null;
             }
         }
@@ -45,7 +45,7 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
     public InventoryItem onPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, PacketReader contentReader) {
         TrinketSlotsItemConfig itemConfig = MTSConfig.getConsolidatedConfig(itemID);
         if (level.isServer() && itemConfig.increment > 0) {
-            (player.getInv()).trinkets.changeSize(getNewSize(player, itemConfig));
+            (player.getInv()).equipment.changeTrinketSlotsSize(getNewSize(player, itemConfig));
             player.equipmentBuffManager.updateTrinketBuffs();
             ServerClient serverClient = player.getServerClient();
             serverClient.closeContainer(false);
@@ -63,7 +63,7 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
 
     //calculates the player's new trinket slot size
     private static int getNewSize(PlayerMob player, TrinketSlotsItemConfig itemConfig) {
-        int newSize = Math.max((player.getInv()).trinkets.getSize() + itemConfig.increment, itemConfig.minSlots);
+        int newSize = Math.max((player.getInv()).equipment.getTrinketSlotsSize() + itemConfig.increment, itemConfig.minSlots);
         //only account for max slots if the user set to 0 or greater
         // negative = no limit
         // 0 = item disabled (disabled items should never technically reach here because they will fail the canPlace)

@@ -20,7 +20,7 @@ public class LootTableFunctions {
     public static void add(LootTable lootTable, TrinketSlotsItemConfig itemConfig) {
         lootTable.items.add(new ConditionLootItem(itemConfig.itemID, (r, o) -> {
             ServerClient client = LootTable.expectExtra(ServerClient.class, o, 1);
-            int playerSlotCount = (client.playerMob.getInv()).trinkets.getSize();
+            int playerSlotCount = (client.playerMob.getInv()).equipment.getTrinketSlotsSize();
             return playerSlotCount < itemConfig.maxSlots;
         }));
     }

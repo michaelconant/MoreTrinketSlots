@@ -47,8 +47,8 @@ public class TrinketSlotsCommand extends ModularChatCommand {
     }
 
     public void onlinePlayerTrinketsChangeSize(ServerClient target, int newAmount) {
-        if (target.playerMob.getInv().trinkets.getSize() != newAmount) {
-            target.playerMob.getInv().trinkets.changeSize(newAmount);
+        if (target.playerMob.getInv().equipment.getTrinketSlotsSize() != newAmount) {
+            target.playerMob.getInv().equipment.changeTrinketSlotsSize(newAmount);
             target.playerMob.equipmentBuffManager.updateTrinketBuffs();
             target.closeContainer(false);
             target.updateInventoryContainer();
@@ -111,13 +111,13 @@ public class TrinketSlotsCommand extends ModularChatCommand {
             //-------------------------------
 
             if (adjustFlag) {
-                int playerSlots = targetClient.playerMob.getInv().trinkets.getSize();
+                int playerSlots = targetClient.playerMob.getInv().equipment.getTrinketSlotsSize();
                 if (playerSlots < MTSConfig.initialSlots) {
                     newSlotAmount = MTSConfig.initialSlots;
                 } else if (playerSlots > MTSConfig.getMaxSlots()) {
                     newSlotAmount = MTSConfig.getMaxSlots();
                 } else {
-                    newSlotAmount = targetClient.playerMob.getInv().trinkets.getSize();
+                    newSlotAmount = targetClient.playerMob.getInv().equipment.getTrinketSlotsSize();
                 }
             }
 
@@ -142,7 +142,7 @@ public class TrinketSlotsCommand extends ModularChatCommand {
                 if (server.getClient(i) != null) {
                     //find the player's new trinket slot size if player who entered the command chose to adjust the slot size
                     if (adjustFlag) {
-                        newSlotAmount = getAdjustAmount((server.getClient(i).playerMob.getInv()).trinkets.getSize());
+                        newSlotAmount = getAdjustAmount((server.getClient(i).playerMob.getInv()).equipment.getTrinketSlotsSize());
                     }
                     onlinePlayerTrinketsChangeSize(server.getClient(i), newSlotAmount);
                 }
@@ -179,12 +179,12 @@ public class TrinketSlotsCommand extends ModularChatCommand {
 
                     //find the player's new trinket slot size if player who entered the command chose to adjust the slot size
                     if (adjustFlag) {
-                        newSlotAmount = getAdjustAmount(offlinePlayerClient.playerMob.getInv().trinkets.getSize());
+                        newSlotAmount = getAdjustAmount(offlinePlayerClient.playerMob.getInv().equipment.getTrinketSlotsSize());
                     }
 
                     //set the offline player's trinket slot size to the new slot amount and dispose of them
-                    if (offlinePlayerClient.playerMob.getInv().trinkets.getSize() != newSlotAmount) {
-                        offlinePlayerClient.playerMob.getInv().trinkets.changeSize(newSlotAmount);
+                    if (offlinePlayerClient.playerMob.getInv().equipment.getTrinketSlotsSize() != newSlotAmount) {
+                        offlinePlayerClient.playerMob.getInv().equipment.changeTrinketSlotsSize(newSlotAmount);
                         offlinePlayerClient.saveClient();
                     }
                     offlinePlayerClient.dispose();

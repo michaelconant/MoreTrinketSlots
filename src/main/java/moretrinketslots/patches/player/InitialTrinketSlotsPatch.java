@@ -10,6 +10,6 @@ import net.bytebuddy.asm.Advice;
 public class InitialTrinketSlotsPatch {
     @Advice.OnMethodExit
     static void onExit(@Advice.This PlayerInventoryManager playerInventoryManager) {
-        playerInventoryManager.trinkets.changeSize(MTSConfig.initialSlots);
+        playerInventoryManager.equipment.changeTrinketSlotsSize(MTSConfig.initialSlots);
     }
 }
