@@ -1,0 +1,54 @@
+[item]
+moretrinketslots_evilsprotector=Clip per Cintura
+moretrinketslots_queenspider=Portachiavi con Gamba di Ragno
+moretrinketslots_swampguardian=Custodia Protettiva
+moretrinketslots_ancientvulture=Protettore Tascabile
+moretrinketslots_piratecaptain=Marsupio
+moretrinketslots_reaper=Sacca per Ninnoli
+moretrinketslots_cryoqueen=Braccialetto con Amuleto
+moretrinketslots_pestwarden=Frutto della Palude
+moretrinketslots_sageandgrit=Borsa del Drago
+moretrinketslots_motherslime=Borsa Asciutta
+moretrinketslots_nightswarm=Borsa a Tracolla
+
+moretrinketslots_genericitem_1=Come Tenere Più Ninnoli: Vol. 1
+moretrinketslots_genericitem_2=Come Tenere Più Ninnoli: Vol. 2
+moretrinketslots_genericitem_3=Come Tenere Più Ninnoli: Vol. 3
+moretrinketslots_genericitem_4=Come Tenere Più Ninnoli: Vol. 4
+moretrinketslots_genericitem_5=Come Tenere Più Ninnoli: Vol. 5
+moretrinketslots_genericitem_6=Come Tenere Più Ninnoli: Vol. 6
+moretrinketslots_genericitem_7=Come Tenere Più Ninnoli: Vol. 7
+moretrinketslots_genericitem_8=Come Tenere Più Ninnoli: Vol. 8
+moretrinketslots_genericitem_9=Come Tenere Più Ninnoli: Vol. 9
+
+moretrinketslots_testsword=Spada di Prova
+
+
+
+[itemtooltip]
+emptypendanttip=Incrementa permanentemente i ninnoli massimi
+wizardsockettip=Incrementa permanentemente i ninnoli massimi
+
+moretrinketslots_evilsprotectortip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_queenspidertip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_swampguardiantip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_ancientvulturetip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_piratecaptaintip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_reapertip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_cryoqueentip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_pestwardentip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_sageandgrittip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_motherslimetip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_nightswarmtip=Incrementa permanentemente i ninnoli massimi
+
+moretrinketslots_genericitem_1tip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_genericitem_2tip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_genericitem_3tip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_genericitem_4tip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_genericitem_5tip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_genericitem_6tip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_genericitem_7tip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_genericitem_8tip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_genericitem_9tip=Incrementa permanentemente i ninnoli massimi
+
+moretrinketslots_testswordtip=Spada dello sviluppatore usata per testare i drop dei boss

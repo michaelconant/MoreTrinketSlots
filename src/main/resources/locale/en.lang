@@ -21,7 +21,7 @@ moretrinketslots_genericitem_7=How To Hold More Trinkets: Vol. 7
 moretrinketslots_genericitem_8=How To Hold More Trinkets: Vol. 8
 moretrinketslots_genericitem_9=How To Hold More Trinkets: Vol. 9
 
-moretrinketslots_testsword="Test Sword"
+moretrinketslots_testsword=Test Sword
 
 
 
@@ -51,4 +51,4 @@ moretrinketslots_genericitem_7tip=Permanently increases max trinkets
 moretrinketslots_genericitem_8tip=Permanently increases max trinkets
 moretrinketslots_genericitem_9tip=Permanently increases max trinkets
 
-moretrinketslots_testswordtip="Dev sword used to test boss drops"
+moretrinketslots_testswordtip=Dev sword used to test boss drops
