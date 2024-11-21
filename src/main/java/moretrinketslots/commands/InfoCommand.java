@@ -31,14 +31,20 @@ public class InfoCommand extends ModularChatCommand {
                         "bosses",
                         "items",
                         "all"
-                }), false)
+                }), true)
         );
     }
 
 
     @Override
     public void runModular(Client client, Server server, ServerClient serverClient, Object[] args, String[] errors, CommandLog logs) {
-        String option = ((String) args[0]).toLowerCase();
+        String option = (String) args[0];
+        if (option == null || option.isEmpty()) {
+            option = "all";
+        } else {
+            option = option.toLowerCase();
+        }
+
         GameMessageBuilder msg = new GameMessageBuilder();
         String defaultColor = GameColor.WHITE.getColorCode();
 
