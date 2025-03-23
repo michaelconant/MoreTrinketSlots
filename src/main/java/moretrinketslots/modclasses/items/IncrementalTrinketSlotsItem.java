@@ -3,7 +3,7 @@ package moretrinketslots.modclasses.items;
 import moretrinketslots.modclasses.settings.MTSConfig;
 import necesse.engine.localization.Localization;
 import necesse.engine.network.Packet;
-import necesse.engine.network.PacketReader;
+import necesse.engine.network.gameNetworkData.GNDItemMap;
 import necesse.engine.network.packet.PacketUpdateTrinketSlots;
 import necesse.engine.network.server.ServerClient;
 import necesse.engine.util.GameBlackboard;
@@ -30,19 +30,20 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
     }
 
     //check if the item can be used
-    public String canPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, PacketReader contentReader) {
+    public String canPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, GNDItemMap mapContent) {
+        int maxSlots = -1;
         if (MTSConfig.containsItemID(itemID)) {
-            int maxSlots = MTSConfig.getConsolidatedConfig(itemID).maxSlots;
+            maxSlots = MTSConfig.getConsolidatedConfig(itemID).maxSlots;
             if ((player.getInv()).equipment.getTrinketSlotsSize() < maxSlots || maxSlots < 0) {
                 return null;
             }
         }
-        return "incorrectslots";
+        return String.format("incorrectslots (playerSlots = %d, maxSlots = %d)", (player.getInv()).equipment.getTrinketSlotsSize(), maxSlots);
     }
     
     //what to do when the item is successfully used
     //this is just a slightly modified version of how the game implements this function
-    public InventoryItem onPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, PacketReader contentReader) {
+    public InventoryItem onPlace(Level level, int x, int y, PlayerMob player, int seed, InventoryItem item, GNDItemMap mapContent) {
         TrinketSlotsItemConfig itemConfig = MTSConfig.getConsolidatedConfig(itemID);
         if (level.isServer() && itemConfig.increment > 0) {
             (player.getInv()).equipment.changeTrinketSlotsSize(getNewSize(player, itemConfig));

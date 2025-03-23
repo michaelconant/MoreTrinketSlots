@@ -67,6 +67,7 @@ public class MTSWorldFile {
             MTSConfig.setDefault();
             System.out.println(MTSConfig.modName + ": worldSettings.cfg, no load data, loading default config");
         } else {
+            System.out.println(MTSConfig.modName + ": worldSettings.cfg found, attempting to load config file");
             MTSConfig.initialSlots = save.getInt("initialSlots", MTSConfig.initialSlots);
             LoadData bossDropData = save.getFirstLoadDataByName("bossdrops");
             List<LoadData> bossDropsLoadData = bossDropData.getLoadData();
@@ -81,11 +82,13 @@ public class MTSWorldFile {
                     //try to see if the full class name for the boss was used
                     Class<?> cls = Class.forName(data.getName());   //used to see if class can be found
                     MTSConfig.items.put(data.getName(), newItem);
+                    System.out.println(MTSConfig.modName + ": added " + newItem.itemID + " to " + data.getName() + " drops");
                 } catch (Exception e) {
                     //try to see if the mobID for the boss was used instead
                     try {
                         Mob tempMob = MobRegistry.getMob(data.getName(), MTSConfig.level);  //used to see if mob can be found
                         MTSConfig.items.put(data.getName(), newItem);
+                        System.out.println(MTSConfig.modName + ": added " + newItem.itemID + " to " + data.getName() + " drops");
                     } catch (Exception f) {
                         System.out.println(MTSConfig.modName + ": " + data.getName() + " in settings but class not found");
                     }

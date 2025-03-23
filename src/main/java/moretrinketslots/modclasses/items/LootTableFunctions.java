@@ -29,6 +29,7 @@ public class LootTableFunctions {
         //look through all entries in the loot table
         lootTable.items.removeIf(lootTableElement -> removeCondition(lootTableElement, targetItemID));
     }
+
     public static boolean removeCondition(LootItemInterface loot, String targetItemID) {
         if (loot instanceof LootItemList) {
             ((LootItemList) loot).removeIf(item -> removeCondition(item, targetItemID));

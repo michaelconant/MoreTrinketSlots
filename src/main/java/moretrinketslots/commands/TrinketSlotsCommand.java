@@ -8,12 +8,14 @@ import necesse.engine.commands.PermissionLevel;
 import necesse.engine.commands.parameterHandlers.*;
 import necesse.engine.localization.message.GameMessageBuilder;
 import necesse.engine.network.client.Client;
+import necesse.engine.network.packet.PacketPlayerInventory;
 import necesse.engine.network.packet.PacketUpdateTrinketSlots;
 import necesse.engine.network.server.Server;
 import necesse.engine.network.server.ServerClient;
 import necesse.engine.save.LoadData;
 import necesse.engine.util.GameRandom;
 import necesse.engine.world.WorldFile;
+import necesse.inventory.InventorySlot;
 
 import java.util.LinkedList;
 import java.util.Objects;
@@ -46,13 +48,46 @@ public class TrinketSlotsCommand extends ModularChatCommand {
         );
     }
 
+    //Attempts to move the extra trinkets to the player's inventory. If they do not have space in their inventory it drops it for them.
+    public ServerClient moveTrinketsToInventory(ServerClient target, int newAmount) {
+        if (target.playerMob.getInv().equipment.getTrinketSlotsSize() > newAmount) {
+            //loop through all items and drop the extra trinkets on the ground
+            int maxSlots = target.playerMob.getInv().equipment.getTrinketSlotsSize();
+            for (int trinketSlotPos = 0; trinketSlotPos < maxSlots - newAmount; trinketSlotPos++) {
+                InventorySlot trinketSlot = target.playerMob.getInv().equipment.getSelectedTrinketsSlot(maxSlots - 1 - trinketSlotPos);
+                if (!trinketSlot.isSlotClear()) {
+                    //place trinket in inventory slot if it is empty
+                    boolean emptySlotFound = false;
+                    for (int invPos = 0; invPos < target.playerMob.getInv().main.getSize(); invPos++) {
+                        if (target.playerMob.getInv().main.isSlotClear(invPos)) {
+                            target.playerMob.getInv().main.setItem(invPos, trinketSlot.getItem());
+                            emptySlotFound = true;
+                            break;
+                        }
+                    }
+
+                    //if empty slot not found drop item on ground
+                    if (!emptySlotFound) {
+                        target.playerMob.dropItem(trinketSlot.getItem());
+                    }
+                }
+            }
+        }
+
+        return target;
+    }
+
     public void onlinePlayerTrinketsChangeSize(ServerClient target, int newAmount) {
         if (target.playerMob.getInv().equipment.getTrinketSlotsSize() != newAmount) {
+
+            target = moveTrinketsToInventory(target, newAmount);
+
             target.playerMob.getInv().equipment.changeTrinketSlotsSize(newAmount);
             target.playerMob.equipmentBuffManager.updateTrinketBuffs();
             target.closeContainer(false);
             target.updateInventoryContainer();
             target.getServer().network.sendToAllClients(new PacketUpdateTrinketSlots(target));
+            target.getServer().network.sendToAllClients(new PacketPlayerInventory(target));
         }
     }
 
@@ -184,6 +219,9 @@ public class TrinketSlotsCommand extends ModularChatCommand {
 
                     //set the offline player's trinket slot size to the new slot amount and dispose of them
                     if (offlinePlayerClient.playerMob.getInv().equipment.getTrinketSlotsSize() != newSlotAmount) {
+
+                        offlinePlayerClient = moveTrinketsToInventory(offlinePlayerClient, newSlotAmount);
+
                         offlinePlayerClient.playerMob.getInv().equipment.changeTrinketSlotsSize(newSlotAmount);
                         offlinePlayerClient.saveClient();
                     }
