@@ -3,9 +3,9 @@ moretrinketslots_evilsprotector=Clip per Cintura
 moretrinketslots_queenspider=Portachiavi con Gamba di Ragno
 moretrinketslots_swampguardian=Custodia Protettiva
 moretrinketslots_ancientvulture=Protettore Tascabile
-moretrinketslots_piratecaptain=Marsupio
 moretrinketslots_reaper=Sacca per Ninnoli
 moretrinketslots_cryoqueen=Braccialetto con Amuleto
+moretrinketslots_thecursedcrone=La corona della strega
 moretrinketslots_pestwarden=Frutto della Palude
 moretrinketslots_sageandgrit=Borsa del Drago
 moretrinketslots_motherslime=Borsa Asciutta
@@ -27,6 +27,7 @@ moretrinketslots_testsword=Spada di Prova
 
 [itemtooltip]
 emptypendanttip=Incrementa permanentemente i ninnoli massimi
+piratesheath=Incrementa permanentemente i ninnoli massimi
 wizardsockettip=Incrementa permanentemente i ninnoli massimi
 
 moretrinketslots_evilsprotectortip=Incrementa permanentemente i ninnoli massimi
@@ -36,6 +37,7 @@ moretrinketslots_ancientvulturetip=Incrementa permanentemente i ninnoli massimi
 moretrinketslots_piratecaptaintip=Incrementa permanentemente i ninnoli massimi
 moretrinketslots_reapertip=Incrementa permanentemente i ninnoli massimi
 moretrinketslots_cryoqueentip=Incrementa permanentemente i ninnoli massimi
+moretrinketslots_thecursedcronetip=Incrementa permanentemente i ninnoli massimi
 moretrinketslots_pestwardentip=Incrementa permanentemente i ninnoli massimi
 moretrinketslots_sageandgrittip=Incrementa permanentemente i ninnoli massimi
 moretrinketslots_motherslimetip=Incrementa permanentemente i ninnoli massimi

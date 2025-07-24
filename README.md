@@ -97,14 +97,14 @@ Changes the game to make it possible to get 8 trinket slots.
 - Empty Pendant
   - Dropped By: Void Wizard
   - Sets trinket slots to 5
-- Pocket Protector
-  - Dropped By: Ancient Vulture
+- Pirate Sheath
+  - Dropped By: Pirate Captain
   - Sets trinket slots to 6
-- Charm Bracelet
-  - Dropped By: Cryo Queen
+- The Crone's Crown
+  - Dropped By: The Cursed Crown
   - Sets trinket slots to 7
-- Fallen Wizard
-  - Dropped By: Wizard Socket
+- Wizard Socket
+  - Dropped By: Fallen Wizard
   - Sets trinket slots to 8
 
 ### Vanilla (vanilla)

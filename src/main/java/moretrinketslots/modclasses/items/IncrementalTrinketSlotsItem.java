@@ -12,6 +12,9 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.placeableItem.consumableItem.ChangeTrinketSlotsItem;
 import necesse.level.maps.Level;
+import sun.tools.jconsole.JConsole;
+
+import java.awt.geom.Line2D;
 
 //class used to implement a new mod item
 public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
@@ -30,7 +33,7 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
     }
 
     //check if the item can be used
-    public String canPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, GNDItemMap mapContent) {
+    public String canPlace(Level level, int x, int y, PlayerMob player, Line2D playerPositionLine, InventoryItem item, GNDItemMap mapContent) {
         int maxSlots = -1;
         if (MTSConfig.containsItemID(itemID)) {
             maxSlots = MTSConfig.getConsolidatedConfig(itemID).maxSlots;
@@ -40,7 +43,7 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
         }
         return String.format("incorrectslots (playerSlots = %d, maxSlots = %d)", (player.getInv()).equipment.getTrinketSlotsSize(), maxSlots);
     }
-    
+
     //what to do when the item is successfully used
     //this is just a slightly modified version of how the game implements this function
     public InventoryItem onPlace(Level level, int x, int y, PlayerMob player, int seed, InventoryItem item, GNDItemMap mapContent) {
@@ -56,7 +59,8 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
             }
             (level.getServer()).network.sendToAllClients((Packet)new PacketUpdateTrinketSlots(serverClient));
         }
-        if (this.singleUse) {
+
+        if (this.isSingleUse(player)) {
             item.setAmount(item.getAmount() - 1);
         }
         return item;

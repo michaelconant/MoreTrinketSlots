@@ -12,6 +12,7 @@ import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.*;
 import necesse.entity.mobs.hostile.bosses.FallenWizardMob;
 import necesse.entity.mobs.hostile.bosses.VoidWizard;
+import necesse.entity.mobs.hostile.pirates.PirateCaptainMob;
 import necesse.inventory.item.placeableItem.consumableItem.TestChangeTrinketSlotsItem;
 
 import java.util.Map;
@@ -47,6 +48,9 @@ public class MoreTrinketSlots {
         //items are added to the private loot tables when the world is loaded
         LootTableFunctions.remove(VoidWizard.privateLootTable, "emptypendant");
         System.out.println("projectcuriosity.moretrinketslots removed emptypendant from VoidWizardMob.privateLootTable");
+
+        LootTableFunctions.remove(PirateCaptainMob.privateLootTable, "piratesheath");
+        System.out.println("projectcuriosity.moretrinketslots removed piratesheath from FallenWizardMob.privateLootTable");
 
         LootTableFunctions.remove(FallenWizardMob.privateLootTable, "wizardsocket");
         System.out.println("projectcuriosity.moretrinketslots removed wizardsocket from FallenWizardMob.privateLootTable");

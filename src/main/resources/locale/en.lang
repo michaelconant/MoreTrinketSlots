@@ -3,9 +3,9 @@ moretrinketslots_evilsprotector=Belt Clip
 moretrinketslots_queenspider=Spider Leg Keychain
 moretrinketslots_swampguardian=Protective Case
 moretrinketslots_ancientvulture=Pocket Protector
-moretrinketslots_piratecaptain=Belt Bag
 moretrinketslots_reaper=Trinket Pouch
 moretrinketslots_cryoqueen=Charm Bracelet
+moretrinketslots_thecursedcrone=The Crone's Crown
 moretrinketslots_pestwarden=Swamp Fruit
 moretrinketslots_sageandgrit=Dragon Satchel
 moretrinketslots_motherslime=Dry Bag
@@ -27,6 +27,7 @@ moretrinketslots_testsword=Test Sword
 
 [itemtooltip]
 emptypendanttip=Permanently increases max trinkets
+piratesheath=Permanently increases max trinkets
 wizardsockettip=Permanently increases max trinkets
 
 moretrinketslots_evilsprotectortip=Permanently increases max trinkets
@@ -36,6 +37,7 @@ moretrinketslots_ancientvulturetip=Permanently increases max trinkets
 moretrinketslots_piratecaptaintip=Permanently increases max trinkets
 moretrinketslots_reapertip=Permanently increases max trinkets
 moretrinketslots_cryoqueentip=Permanently increases max trinkets
+moretrinketslots_thecursedcronetip=Permanently increases max trinkets
 moretrinketslots_pestwardentip=Permanently increases max trinkets
 moretrinketslots_sageandgrittip=Permanently increases max trinkets
 moretrinketslots_motherslimetip=Permanently increases max trinkets

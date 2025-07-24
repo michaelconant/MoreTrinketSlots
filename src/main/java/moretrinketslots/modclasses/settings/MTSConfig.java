@@ -43,10 +43,11 @@ public class MTSConfig {
         items.put("queenspider", new TrinketSlotsItemConfig(itemPrefix + "queenspider", 0, 0, 1));
         items.put("voidwizard", new TrinketSlotsItemConfig("emptypendant", 5, 5, 1));
         items.put("swampguardian", new TrinketSlotsItemConfig(itemPrefix + "swampguardian", 0, 0, 1));
-        items.put("ancientvulture", new TrinketSlotsItemConfig(itemPrefix + "ancientvulture", 6, 6, 1));
-        items.put("piratecaptain", new TrinketSlotsItemConfig(itemPrefix + "piratecaptain", 0, 0, 1));
+        items.put("ancientvulture", new TrinketSlotsItemConfig(itemPrefix + "ancientvulture", 0, 0, 1));
+        items.put("piratecaptain", new TrinketSlotsItemConfig("piratesheath", 6, 6, 1));
         items.put("reaper", new TrinketSlotsItemConfig(itemPrefix + "reaper", 0, 0, 1));
-        items.put("cryoqueen", new TrinketSlotsItemConfig(itemPrefix + "cryoqueen", 7, 7, 1));
+        items.put("cryoqueen", new TrinketSlotsItemConfig(itemPrefix + "cryoqueen", 0, 0, 1));
+        items.put("thecursedcrone", new TrinketSlotsItemConfig(itemPrefix + "thecursedcrone", 7, 7, 1));
         items.put("pestwarden", new TrinketSlotsItemConfig(itemPrefix + "pestwarden", 0, 0, 1));
         items.put(FlyingSpiritsHead.class.getName(), new TrinketSlotsItemConfig(itemPrefix + "sageandgrit", 0, 0, 1));
         items.put("fallenwizard", new TrinketSlotsItemConfig("wizardsocket", 8, 8, 1));

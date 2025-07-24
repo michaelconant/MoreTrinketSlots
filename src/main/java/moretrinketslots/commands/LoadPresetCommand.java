@@ -55,7 +55,8 @@ public class LoadPresetCommand extends ModularChatCommand {
             case "vanilla":
                 initialSlots = 4;
                 items.put("voidwizard", new TrinketSlotsItemConfig("emptypendant", 5, 5, 1));
-                items.put("fallenwizard", new TrinketSlotsItemConfig("wizardsocket", 6, 6, 1));
+                items.put("piratecaptain", new TrinketSlotsItemConfig("piratesheath", 6, 6, 1));
+                items.put("fallenwizard", new TrinketSlotsItemConfig("wizardsocket", 7, 7, 1));
                 break;
             case "zerotohero":
                 //default to 6 setting
@@ -151,7 +152,7 @@ public class LoadPresetCommand extends ModularChatCommand {
         items.put("voidwizard", new TrinketSlotsItemConfig("emptypendant", 5, 5, 1));
         items.put("swampguardian", new TrinketSlotsItemConfig(itemPrefix + "swampguardian", 0, 0, 1));
         items.put("ancientvulture", new TrinketSlotsItemConfig(itemPrefix + "ancientvulture", 6, 6, 1));
-        items.put("piratecaptain", new TrinketSlotsItemConfig(itemPrefix + "piratecaptain", 0, 0, 1));
+        items.put("piratecaptain", new TrinketSlotsItemConfig("piratesheath", 0, 0, 1));
         items.put("reaper", new TrinketSlotsItemConfig(itemPrefix + "reaper", 0, 0, 1));
         items.put("cryoqueen", new TrinketSlotsItemConfig(itemPrefix + "cryoqueen", 7, 7, 1));
         items.put("pestwarden", new TrinketSlotsItemConfig(itemPrefix + "pestwarden", 0, 0, 1));
