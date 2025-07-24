@@ -101,7 +101,7 @@ Changes the game to make it possible to get 8 trinket slots.
   - Dropped By: Pirate Captain
   - Sets trinket slots to 6
 - The Crone's Crown
-  - Dropped By: The Cursed Crown
+  - Dropped By: The Cursed Crone
   - Sets trinket slots to 7
 - Wizard Socket
   - Dropped By: Fallen Wizard
