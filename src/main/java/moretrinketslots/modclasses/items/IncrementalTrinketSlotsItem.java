@@ -12,7 +12,6 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.placeableItem.consumableItem.ChangeTrinketSlotsItem;
 import necesse.level.maps.Level;
-import sun.tools.jconsole.JConsole;
 
 import java.awt.geom.Line2D;
 
@@ -30,18 +29,6 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
         ListGameTooltips tooltips = super.getTooltips(item, perspective, blackboard);
         tooltips.add(Localization.translate("itemtooltip", itemID+"tip"));
         return tooltips;
-    }
-
-    //check if the item can be used
-    public String canPlace(Level level, int x, int y, PlayerMob player, Line2D playerPositionLine, InventoryItem item, GNDItemMap mapContent) {
-        int maxSlots = -1;
-        if (MTSConfig.containsItemID(itemID)) {
-            maxSlots = MTSConfig.getConsolidatedConfig(itemID).maxSlots;
-            if ((player.getInv()).equipment.getTrinketSlotsSize() < maxSlots || maxSlots < 0) {
-                return null;
-            }
-        }
-        return String.format("incorrectslots (playerSlots = %d, maxSlots = %d)", (player.getInv()).equipment.getTrinketSlotsSize(), maxSlots);
     }
 
     //what to do when the item is successfully used
@@ -64,6 +51,18 @@ public class IncrementalTrinketSlotsItem extends ChangeTrinketSlotsItem {
             item.setAmount(item.getAmount() - 1);
         }
         return item;
+    }
+
+    //check if the item can be used
+    public String canPlace(Level level, int x, int y, PlayerMob player, Line2D playerPositionLine, InventoryItem item, GNDItemMap mapContent) {
+        int maxSlots = -1;
+        if (MTSConfig.containsItemID(itemID)) {
+            maxSlots = MTSConfig.getConsolidatedConfig(itemID).maxSlots;
+            if ((player.getInv()).equipment.getTrinketSlotsSize() < maxSlots || maxSlots < 0) {
+                return null;
+            }
+        }
+        return String.format("incorrectslots (playerSlots = %d, maxSlots = %d)", (player.getInv()).equipment.getTrinketSlotsSize(), maxSlots);
     }
 
     //calculates the player's new trinket slot size

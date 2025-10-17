@@ -12,10 +12,11 @@ import net.bytebuddy.asm.Advice;
 
 import java.awt.*;
 
-@ModMethodPatch(target = Server.class, name = "start", arguments = {ServerHostSettings.class})
+@ModMethodPatch(target = Server.class, name = "start", arguments = {ServerHostSettings.class, boolean.class})
 public class StartPatch {
     @Advice.OnMethodEnter
     static void onEnter(@Advice.This Server server) {
+        System.out.println(MTSConfig.modName + ": attempting to load MTSConfig settings from file");
         MTSWorldFile.loadSettings(server.world);
         MTSConfig.level = new Level(
                 new LevelIdentifier("mtsproxylevel"),
@@ -23,8 +24,7 @@ public class StartPatch {
                 1,
                 WorldEntity.getServerWorldEntity(
                         server.world,
-                        1,
-                        new Point()
+                        "1"
                 )
         );
     }
