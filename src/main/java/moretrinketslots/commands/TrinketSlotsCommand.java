@@ -12,6 +12,7 @@ import necesse.engine.network.packet.PacketPlayerInventory;
 import necesse.engine.network.packet.PacketUpdateTrinketSlots;
 import necesse.engine.network.server.Server;
 import necesse.engine.network.server.ServerClient;
+import necesse.engine.network.server.ServerSaveHandler;
 import necesse.engine.save.LoadData;
 import necesse.engine.util.GameRandom;
 import necesse.engine.world.WorldFile;
@@ -21,6 +22,18 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class TrinketSlotsCommand extends ModularChatCommand {
+
+    //Save handler used to output status of the save after using the command to console
+    ServerSaveHandler.SaveInterruptedOrFinishedEventHandler saveHandler = new ServerSaveHandler.SaveInterruptedOrFinishedEventHandler() {
+        public void onSaveInterrupted(ServerSaveHandler newSaveHandler) {
+            System.out.println("World save interrupted, changes to trinket slots not applied properly");
+        }
+
+        public void onSaveFinished() {
+            System.out.println("World saved successfully");
+        }
+    };
+
     public TrinketSlotsCommand() {
         super(MTSConfig.modAcronym + ".trinketslots", "Change player(s) trinket slots size", PermissionLevel.OWNER, false,
             new CmdParameter[] {
@@ -164,8 +177,7 @@ public class TrinketSlotsCommand extends ModularChatCommand {
             }
 
             logs.add(msg);
-            logs.add("Starting world save");
-            server.startSave(true, true, logs);
+            server.startFullSave(true, true, null);
             return;
         }
 
@@ -239,7 +251,6 @@ public class TrinketSlotsCommand extends ModularChatCommand {
         }
 
         logs.add(msg);
-        logs.add("Starting world save");
-        server.startSave(true, true, logs);
+        server.startFullSave(true, true, saveHandler);
     }
 }
