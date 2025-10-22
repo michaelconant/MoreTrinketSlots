@@ -27,7 +27,7 @@ moretrinketslots_testsword=Test Sword
 
 [itemtooltip]
 emptypendanttip=Permanently increases max trinkets
-piratesheath=Permanently increases max trinkets
+piratesheathtip=Permanently increases max trinkets
 wizardsockettip=Permanently increases max trinkets
 
 moretrinketslots_evilsprotectortip=Permanently increases max trinkets

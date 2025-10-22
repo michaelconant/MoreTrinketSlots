@@ -162,8 +162,10 @@ public class TrinketSlotsCommand extends ModularChatCommand {
             } else {
                 msg.append(String.format("Changed %s's trinket slots to %d", targetClient.playerMob.playerName, newSlotAmount));
             }
+
             logs.add(msg);
-            server.saveAll();
+            logs.add("Starting world save");
+            server.startSave(true, true, logs);
             return;
         }
 
@@ -235,7 +237,9 @@ public class TrinketSlotsCommand extends ModularChatCommand {
         } else {
             msg.append(String.format("Changed %s players trinket slots to %d", target, newSlotAmount));
         }
+
         logs.add(msg);
-        server.saveAll();
+        logs.add("Starting world save");
+        server.startSave(true, true, logs);
     }
 }
