@@ -8,6 +8,7 @@ import necesse.engine.commands.PermissionLevel;
 import necesse.engine.commands.parameterHandlers.*;
 import necesse.engine.localization.message.GameMessageBuilder;
 import necesse.engine.network.client.Client;
+import necesse.engine.network.networkInfo.NetworkInfo;
 import necesse.engine.network.packet.PacketPlayerInventory;
 import necesse.engine.network.packet.PacketUpdateTrinketSlots;
 import necesse.engine.network.server.Server;
@@ -221,7 +222,7 @@ public class TrinketSlotsCommand extends ModularChatCommand {
                     ServerClient offlinePlayerClient = server.world.loadClient(
                             playerFile,
                             GameRandom.globalRandom.nextLong(),
-                            serverClient.networkInfo,
+                            null,
                             -1,
                             fileNameLong
                     );
